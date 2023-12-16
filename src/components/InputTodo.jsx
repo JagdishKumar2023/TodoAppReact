@@ -8,6 +8,7 @@ export const InputTodo = () => {
 
   const inputRef = useRef();
 
+  // add todo:-
   const handleAddTodo = () => {
     setTodos((prev) =>
       setTodos([
@@ -19,6 +20,30 @@ export const InputTodo = () => {
     setInputTodo("");
 
     inputRef.current.focus();
+  };
+
+  // update status:-
+  const handleClick = (id) => {
+    let updatedTodo = todos.map((todo) => {
+      if (id === todo.id) {
+        return {
+          ...todo,
+          isCompleted: !todo.isCompleted,
+        };
+      }
+      return todo;
+    });
+    setTodos(updatedTodo);
+  };
+
+  // delete todo:-
+  const handleDelete = (id) => {
+    let updatedTodo = todos.filter((todo) => {
+      if (id !== todo.id) {
+        return todo;
+      }
+    });
+    setTodos(updatedTodo);
   };
 
   return (
@@ -36,7 +61,12 @@ export const InputTodo = () => {
           Add
         </button>
       </div>
-      <Todos todos={todos} setTodos={setTodos} />
+      <Todos
+        todos={todos}
+        setTodos={setTodos}
+        handleClick={handleClick}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };

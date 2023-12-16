@@ -1,31 +1,10 @@
 import React from "react";
+import { useState } from "react";
 
-export const Todos = ({ todos, setTodos }) => {
-  //   console.log("todos in Todos file", todos);
-
-  const handleClick = (id) => {
-    let updatedTodo = todos.map((todo) => {
-      if (id === todo.id) {
-        return {
-          ...todo,
-          isCompleted: !todo.isCompleted,
-        };
-      }
-      return todo;
-    });
-    setTodos(updatedTodo);
-  };
+export const Todos = ({ todos, setTodos, handleClick, handleDelete }) => {
+  const [count, setCount] = useState(1);
 
   // to delete:-
-
-  const handleDelete = (id) => {
-    let updatedTodo = todos.filter((todo) => {
-      if (id !== todo.id) {
-        return todo;
-      }
-    });
-    setTodos(updatedTodo);
-  };
 
   console.log(todos);
 
